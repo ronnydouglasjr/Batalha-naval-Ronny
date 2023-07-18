@@ -10,46 +10,49 @@ const seaBoard = [
 // Desenvolva seu código logo abaixo
 
 // Função para rodar testes allocateShips
-allocateShips = (shipPositions, initialBoard) => {
+function allocateShips(shipPositions, initialBoard) {
   const board = initialBoard;
 
-  for (let [row, column] of shipPositions) {
-    if (board[row] && board[row][column]) {
-      board[row][column] = "S";
-    } else {
-      board[row][column] = ".";
-    }
+  for (let i = 0; i < shipPositions.length; i++) {
+    const [row, column] = shipPositions[i];
+    board[row][column] = "S";
   }
   return board;
-};
-
+}
 console.log(allocateShips);
 
-
 // Função para rodar testes checkGuesses
-checkGuesses = (guesses, mountedBoard) => {
-  const board = mountedBoard; 
+function checkGuesses(guesses, mountedBoard) {
+  const board = [];
 
-  for (let [row, column] of guesses) {
+  for (let i = 0; i < mountedBoard.length; i++) {
+    board.push(mountedBoard[i]);
+  }
+
+  for (let i = 0; i < guesses.length; i++) {
+    const [row, column] = guesses[i];
+
     if (board[row] && board[row][column] === "S") {
       board[row][column] = "X";
     }
   }
   return board;
-};
-
+}
 console.log(checkGuesses);
 
-// Função para rodar testes checkWinCondition 
+// Função para rodar testes checkWinCondition
 
-checkWinCondition = (guessedBoard) => {
-  for(let row of guessedBoard){
-    for(let column of row){
-      if(column === "S"){
-        return false
+function checkWinCondition(guessedBoard) {
+  for (let i = 0; i < guessedBoard.length; i++) {
+    const row = guessedBoard[i];
+    for (let j = 0; j < row.length; j++) {
+      const column = row[j];
+      if (column === "S") {
+        return false;
       }
     }
   }
-  return true
-};
+  return true;
+}
 
+console.log(checkWinCondition);
